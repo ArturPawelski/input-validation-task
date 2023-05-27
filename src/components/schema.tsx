@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const pizzaSchema = z.object({
-  name: z.string().min(3).max(40),
+  name: z.string().min(2).max(40),
   preparation_time: z.string().min(1).max(9),
   type: z.literal('pizza'),
   no_of_slices: z.number().int().min(2).max(20),

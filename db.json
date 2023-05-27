@@ -1,18 +1,26 @@
 {
   "data": [
     {
-      "name": "12",
+      "name": "pizza",
       "preparation_time": "00:00:00",
-      "type": "sandwich",
-      "slices_of_bread": 6,
+      "type": "pizza",
+      "no_of_slices": 4,
+      "diameter": 45,
       "id": 1
     },
     {
-      "name": "123",
-      "preparation_time": "00:00:00",
+      "name": "soup",
+      "preparation_time": "03:00:00",
       "type": "soup",
-      "spiciness_scale": 4,
+      "spiciness_scale": 8,
       "id": 2
+    },
+    {
+      "name": "sandwich",
+      "preparation_time": "00:00:00",
+      "type": "sandwich",
+      "slices_of_bread": 5,
+      "id": 3
     }
   ]
 }

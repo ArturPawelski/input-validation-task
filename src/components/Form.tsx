@@ -18,6 +18,13 @@ import { FormSchema, FormSchemaType } from './schema';
 import './form.css';
 
 const Form = () => {
+  const [errorMsg, setErrorMsg] = useState<string>('');
+  const [successMsg, setSuccessMsg] = useState<string>('');
+  const [isSent, setIsSent] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [backgroundImage, setBackgroundImage] = useState<string>(BgImage);
+
   const {
     register,
     watch,
@@ -32,14 +39,67 @@ const Form = () => {
 
   const typeValue: 'pizza' | 'soup' | 'sandwich' = watch('type');
 
+  useEffect(() => {
+    if (typeValue === 'pizza') {
+      setBackgroundImage(BgPizza);
+    } else if (typeValue === 'soup') {
+      setBackgroundImage(BgSoup);
+    } else if (typeValue === 'sandwich') {
+      setBackgroundImage(Bgbread);
+    } else {
+      setBackgroundImage(BgImage);
+    }
+  }, [typeValue]);
+
+  const postToServer = async (data: FormSchemaType) => {
+    try {
+      const response = await fetch('https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      setIsSent(true);
+
+      if (response.ok) {
+        console.log('Pomyślnie wysłano żądanie POST.');
+        setIsError(false);
+        setIsSuccess(true);
+        setSuccessMsg('Success, your order has been sent! ');
+        const removeMessage = () => {
+          setTimeout(() => {
+            setIsError(true);
+            setIsSuccess(false);
+            setIsError(false);
+          }, 4000);
+        };
+        removeMessage();
+      } else {
+        const errorData = await response.json();
+        console.log('Wystąpił błąd podczas wysyłania żądania POST.', errorData);
+        setIsSuccess(false);
+        setIsError(true);
+        setErrorMsg(`Error please try again! ${JSON.stringify(errorData)} `);
+      }
+    } catch (error) {
+      console.error('Wystąpił błąd podczas wysyłania żądania:', error);
+    }
+  };
+
   const onSubmit = (data: FormSchemaType) => {
     console.log(data);
-
+    postToServer(data);
     reset();
   };
 
   return (
-    <main className='main-div'>
+    <main
+      className='main-div'
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
+    >
       <div className='overlay'>
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
           <section className='inputs-section'>
@@ -144,6 +204,8 @@ const Form = () => {
               Submit
             </Button>
           </section>
+          {isSent && isError && <h1 className='error_from_api'>{errorMsg}</h1>}
+          {isSent && isSuccess && <h1 className='success_from_api'>{successMsg}</h1>}
         </form>
       </div>
     </main>
