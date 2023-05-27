@@ -1,0 +1,46 @@
+.main-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+form {
+  min-width: 400px;
+  max-width: 400px;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 30px;
+  box-shadow: inset 10px 10px 20px -15px rgba(66, 68, 90, 1);
+}
+.inputs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+.input {
+  width: 100%;
+}
+.div-with-error {
+  display: flex;
+  flex-direction: column;
+}
+.div-with-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.errors {
+  color: red;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+}
