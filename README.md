@@ -28,6 +28,9 @@ https://artur-pawelski.netlify.app/
 
 -React Icons
 
+Json Server: Testing the POST Method
+
+
 ## Installation 💾
 
 ```
