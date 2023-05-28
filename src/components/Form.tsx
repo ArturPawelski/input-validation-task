@@ -63,7 +63,6 @@ const Form = () => {
       setIsSent(true);
 
       if (response.ok) {
-        console.log('Pomyślnie wysłano żądanie POST.');
         setIsError(false);
         setIsSuccess(true);
         setSuccessMsg('Success, your order has been sent! ');
@@ -77,18 +76,16 @@ const Form = () => {
         removeMessage();
       } else {
         const errorData = await response.json();
-        console.log('Wystąpił błąd podczas wysyłania żądania POST.', errorData);
         setIsSuccess(false);
         setIsError(true);
         setErrorMsg(`Error please try again! ${JSON.stringify(errorData)} `);
       }
     } catch (error) {
-      console.error('Wystąpił błąd podczas wysyłania żądania:', error);
+      console.error(error);
     }
   };
 
   const onSubmit = (data: FormSchemaType) => {
-    console.log(data);
     postToServer(data);
     reset();
   };
