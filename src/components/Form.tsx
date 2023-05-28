@@ -204,6 +204,7 @@ const Form = () => {
               Submit
             </Button>
           </section>
+
           {isSent && isError && <h1 className='error_from_api'>{errorMsg}</h1>}
           {isSent && isSuccess && <h1 className='success_from_api'>{successMsg}</h1>}
         </form>
