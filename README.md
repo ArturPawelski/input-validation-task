@@ -8,7 +8,7 @@ Npm version: 8.15.0
 
 This project is designed for practicing data validation and working with interactive forms. It uses the React Hook Form and Zod libraries.
 
-This task took me around 10 hours to complete.
+
 
 ## Live preview 📲
 
